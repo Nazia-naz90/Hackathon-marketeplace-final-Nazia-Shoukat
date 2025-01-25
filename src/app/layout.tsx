@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { CartProvider } from "./components/CartContext";
+import Script from "next/script";
 
 
 const geistSans = localFont({
@@ -34,7 +35,7 @@ export default function RootLayout({
       {children}
       </CartProvider>
         
-      <script src="//code.tidio.co/4f6jratycn0i22hlgfvavhju83j5nlky.js" async></script> 
+      <script src="//code.tidio.co/4f6jratycn0i22hlgfvavhju83j5nlky.js" async></script>
       </body>
     </html>
   );
