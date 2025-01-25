@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { client } from "@/sanity/lib/client";
 import Image from "next/image";
 import Link from "next/link";
-import ProductDetails from "../components/ProductDetails";
+// import ProductDetails from "../components/ProductDetails";
 
 interface Product {
   id: string;
@@ -52,7 +52,7 @@ const SearchPage = () => {
       </div>
       <div>
         <h2 className="text-xl font-semibold mb-2">
-          Search Results for "{searchTerm}"
+          Search Results for {searchTerm}
         </h2>
         <ul>
           {searchResults.map((product) => (
