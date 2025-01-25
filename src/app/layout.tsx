@@ -34,7 +34,7 @@ export default function RootLayout({
       {children}
       </CartProvider>
         
-        
+      <script src="//code.tidio.co/4f6jratycn0i22hlgfvavhju83j5nlky.js" async></script> 
       </body>
     </html>
   );
