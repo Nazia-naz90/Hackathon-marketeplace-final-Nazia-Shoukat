@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { CartProvider } from "./components/CartContext";
 import Script from "next/script";
+import { ClerkProvider, SignedIn, SignedOut, SignInButton, SignOutButton, UserButton } from "@clerk/nextjs";
 
 
 const geistSans = localFont({
@@ -27,16 +28,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+  <ClerkProvider>
+        <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
       <CartProvider>
+   
       {children}
+    
       </CartProvider>
         
       <Script src="//code.tidio.co/4f6jratycn0i22hlgfvavhju83j5nlky.js" async></Script>
       </body>
     </html>
+  </ClerkProvider>
   );
 }

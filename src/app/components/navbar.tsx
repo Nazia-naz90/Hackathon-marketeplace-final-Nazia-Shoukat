@@ -1,4 +1,4 @@
-"use client";
+"use client"; // Clerk ke client-side hooks ke liye yeh zaroori hai
 
 import Link from "next/link";
 import { useState } from "react";
@@ -17,10 +17,12 @@ import {
   FiX,
 } from "react-icons/fi";
 import { useCart } from "@/app/components/CartContext";
+import { useUser, SignInButton, SignOutButton, UserButton } from "@clerk/nextjs";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { cart, wishlist } = useCart();
+  const { isSignedIn } = useUser(); // Clerk ka useUser hook
 
   return (
     <div className="overflow-x-hidden">
@@ -84,6 +86,19 @@ const Header = () => {
           <div className="text-2xl font-bold text-[#252B42]">BANDAGE</div>
           {/* ACTION ICONS (MOBILE & DESKTOP) */}
           <div className="flex items-center gap-4 md:hidden">
+            {/* Login & SignedIn */}
+            {isSignedIn ? (
+              <div className="flex items-center gap-2">
+                <UserButton afterSignOutUrl="/" /> {/* UserButton for profile */}
+                <SignOutButton>
+                  <button className="text-red-600">Sign Out</button>
+                </SignOutButton>
+              </div>
+            ) : (
+              <SignInButton>
+                <button className="text-blue-500">Sign In / Register</button>
+              </SignInButton>
+            )}
             {/* SEARCH ICON */}
             <Link href="/search">
               <FiSearch className="text-2xl text-[#252B42] cursor-pointer" />
@@ -169,14 +184,25 @@ const Header = () => {
             </ul>
           </nav>
           {/* ACTION ICONS FOR DESKTOP */}
-          <div className="hidden md:flex items-center gap-6 text-[#23A6F0]">
-            <button className="text-sm font-medium">Login/Register</button>
-
+          <div className="hidden sm:flex items-center gap-6 text-[#23A6F0]">
+            {/* SignIn & SignOut */}
+            {isSignedIn ? (
+              <div className="flex items-center gap-2">
+                <UserButton afterSignOutUrl="/" /> {/* UserButton for profile */}
+                <SignOutButton>
+                  <button className="text-red-600">Sign Out</button>
+                </SignOutButton>
+              </div>
+            ) : (
+              <SignInButton>
+                <button className="text-blue-600">Sign In / Register</button>
+              </SignInButton>
+            )}
             {/* SEARCH ICON */}
             <Link href="/search">
               <FiSearch className="text-lg cursor-pointer" />
             </Link>
-
+            {/* CART ICON */}
             <Link href="/cart">
               <div className="relative">
                 <FiShoppingCart className="text-lg cursor-pointer" />
@@ -241,6 +267,8 @@ const Header = () => {
 
 export default Header;
 
+
+
 // "use client";
 
 // import Link from "next/link";
@@ -261,10 +289,12 @@ export default Header;
 // } from "react-icons/fi";
 // import { useCart } from "@/app/components/CartContext";
 
-// const Header = () => {
+
+
+// const Header =() => {
 //   const [isMenuOpen, setIsMenuOpen] = useState(false);
 //   const { cart, wishlist } = useCart();
-
+  
 //   return (
 //     <div className="overflow-x-hidden">
 //       {/* HEADER SECTION */}
@@ -327,7 +357,14 @@ export default Header;
 //           <div className="text-2xl font-bold text-[#252B42]">BANDAGE</div>
 //           {/* ACTION ICONS (MOBILE & DESKTOP) */}
 //           <div className="flex items-center gap-4 md:hidden">
-//             <FiSearch className="text-2xl text-[#252B42] cursor-pointer" />
+//             {/* Login & SignedIn */}
+//            <button>
+//             signIn/Register
+//            </button>
+//             {/* SEARCH ICON */}
+//             <Link href="/search">
+//               <FiSearch className="text-2xl text-[#252B42] cursor-pointer" />
+//             </Link>
 
 //             <Link href="/cart">
 //               <div className="relative">
@@ -391,9 +428,6 @@ export default Header;
 //                 </Link>
 //               </li>
 //               <li>
-               
-//               </li>
-//               <li>
 //                 <Link
 //                   href="/contact"
 //                   className="hover:text-[#23A6F0] transition-all"
@@ -412,15 +446,21 @@ export default Header;
 //             </ul>
 //           </nav>
 //           {/* ACTION ICONS FOR DESKTOP */}
-//           <div className="hidden md:flex items-center gap-6 text-[#23A6F0]">
-//             <button className="text-sm font-medium">Login/Register</button>
-            
-            
+//           <div className="hidden sm:flex items-center gap-6 text-[#23A6F0]">
+//           {/* SignIn & SignOut */}
+//          <button>SignIn/Register</button> 
+//             {/* SEARCH ICON */}
+//             <Link href="/search">
+//               <FiSearch className="text-lg cursor-pointer" />
+//             </Link>
+             
+//              {/* CART ICON */}
 //             <Link href="/cart">
 //               <div className="relative">
 //                 <FiShoppingCart className="text-lg cursor-pointer" />
 //                 {cart.length > 0 && (
-//                   <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-1">
+//                   <span className="absolute -top-2 -right-2 bg-red-500 text-white 
+//                   text-xs rounded-full px-1">
 //                     {cart.length}
 //                   </span>
 //                 )}

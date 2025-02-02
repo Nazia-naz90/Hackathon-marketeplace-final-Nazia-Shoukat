@@ -81,15 +81,13 @@ export default function ProductDetails({ product }: { product: Product }) {
           )}
         </div>
 
-        <div
-          className="flex flex-col items-center justify-center w-[250px] 
-sm:w-[400px] lg:w-[450px] h-auto space-y-2  
-  mx-auto"
-        >
+<div
+className="flex flex-col items-center justify-center w-auto
+sm:w-[400px] lg:w-[450px] h-[800px] sm:h-auto space-y-2 sm:p-10  
+mx-auto">
           <h1
-            className="text-[1.5rem] text-yellow-600 sm:text-[2rem] 
-  lg:text-[2rem] 
-  font-bold text-dark dark:text-light"
+            className="text-[1.5rem] text-yellow-600 sm:text-[2rem] lg:text-[2rem] 
+           font-bold text-dark dark:text-light"
           >
             {product.name}
           </h1>
@@ -109,9 +107,8 @@ sm:w-[400px] lg:w-[450px] h-auto space-y-2
           <div>
             {product.description && (
               <p
-                className="text-blue-700 text-[16px] sm:font-bold
-      text-justify sm:text-justify 
-      mt-2"
+                className="text-blue-700 text-[16px] 
+                text-center  mt-2"
               >
                 {product.description}
               </p>
@@ -132,33 +129,38 @@ sm:w-[400px] lg:w-[450px] h-auto space-y-2
           </div>
 
           {product.lDress && (
-            <section
-              className="flex flex-col px-0 sm:px-4 md:px-12 lg:px-0
-     gap-2 xs:gap-4 
+            <div
+    className="flex flex-col px-[10px] sm:px-2 md:px-2 lg:px-0
+    gap-4 xs:gap-4 w-[280px] sm:w-[400px] h-[600px] sm:h-auto
     sm:gap-6 items-start xs:items-center justify-start"
             >
-              <p className="text-[18px] font-semibold text-center sm:text-justify">
+              <p className="text-[18px] font-semibold text-justify sm:text-justify">
                 {product.lDress.description}
               </p>
-              <div className="flex items-center justify-center mx-auto space-x-4">
+              <div className="flex  items-center justify-center mx-auto space-x-1
+               sm:space-x-4">
                 <button
                   onClick={handleAddToCart}
-                  className="w-[140px] h-[45px]
-         border-transparent bg-blue-500 rounded-md"
+                  className="w-20 sm:w-[140px] h-[45px]
+                  text-[12px] sm:text-[16px]
+                  border-transparent bg-blue-500 rounded-md"
                 >
                   {product.lDress.button}
                 </button>
                 <button
                   onClick={handleWishlist}
-                  className="w-[140px] h-[45px]
-         border-transparent bg-pink-500 rounded-md"
+                  className="w-[20] sm:w-[140px] h-[45px]
+                  text-[12px] sm:text-[16px]
+                  border-transparent bg-pink-500 rounded-md"
                 >
                   {wishlist.some((item) => item.id === product.id)
                     ? "Remove from Wishlist"
                     : "Add to Wishlist"}
                 </button>
+                
                 {product.lDress.heartIconUrl && (
-                  <FaHeart
+                  
+                <FaHeart
                     className={`w-6 h-6 cursor-pointer ${
                       wishlist.some((item) => item.id === product.id)
                         ? "text-rose-700"
@@ -176,7 +178,7 @@ sm:w-[400px] lg:w-[450px] h-auto space-y-2
                   <FaEye className="text-blue-600 w-6 h-6" />
                 )}
               </div>
-            </section>
+            </div>
           )}
         </div>
       </article>

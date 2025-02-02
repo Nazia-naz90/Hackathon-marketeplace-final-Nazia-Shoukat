@@ -9,17 +9,24 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/nextjs": "^6.10.2",
     "@sanity/vision": "^3.71.2",
+    "@stripe/react-stripe-js": "^3.1.1",
+    "@stripe/stripe-js": "^5.6.0",
+    "axios": "^1.7.9",
     "downshift": "^9.0.8",
     "next": "14.2.21",
     "next-sanity": "^9.8.42",
-    "react": "^19.0.0",
+    "react": "^18.2.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.4.0",
     "react-select": "^5.10.0",
-    "sanity": "^3.71.2"
+    "sanity": "^3.71.2",
+    "shipengine": "^1.0.7",
+    "stripe": "^17.6.0"
   },
   "devDependencies": {
+    "@types/axios": "^0.14.4",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
