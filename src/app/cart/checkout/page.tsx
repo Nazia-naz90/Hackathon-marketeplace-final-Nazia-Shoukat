@@ -1,6 +1,6 @@
 "use client";
 import { useSearchParams, useRouter } from "next/navigation";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements, PaymentElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { createPaymentIntent } from "./action";
@@ -11,20 +11,20 @@ import Image from "next/image";
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string);
 
 export default function CheckoutPage() {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const cartData = searchParams.get("cart");
 
   // Parse the cart data from the URL
   const cart = cartData ? JSON.parse(decodeURIComponent(cartData)) : [];
 
-  // Calculate the total price
-  const calculateTotal = () =>
+  // Calculate the total price using useCallback to memoize the function
+  const calculateTotal = useCallback(() =>
     cart.reduce(
       (total: number, item: { price: number; quantity: number }) =>
         total + item.price * item.quantity,
       0
-    );
+    ), [cart] // Add cart as a dependency
+  );
 
   // State to store the client secret, which is required for processing the payment
   const [clientSecret, setClientSecret] = useState<string | null>(null);
@@ -40,7 +40,7 @@ export default function CheckoutPage() {
       .catch((error) => {
         console.error("Error creating payment intent:", error);
       });
-  }, []);
+  }, [calculateTotal]); // Add calculateTotal to the dependency array
 
   // While waiting for the client secret, show a loading message
   if (!clientSecret) {
@@ -58,7 +58,8 @@ export default function CheckoutPage() {
           {/* Order Summary */}
           <div className="w-[500px] h-auto px-32 space-y-6 border-2 border-gray-300 shadow-lg rounded-md p-10">
             <h2 className="text-xl font-bold text-pink-500">
-              Order Summary</h2>
+              Order Summary
+            </h2>
             {cart.map(
               (item: {
                 id: string;
@@ -101,7 +102,8 @@ export default function CheckoutPage() {
           {/* Shipping Details and Stripe Checkout */}
           <div className="flex flex-col items-center justify-center w-[500px] border-2 border-gray-300 shadow-lg rounded-md p-10">
             <h2 className="text-xl font-bold text-purple-600">
-              Shipping Details</h2>
+              Shipping Details
+            </h2>
             <form className="space-y-4">
               <input
                 type="text"
@@ -149,6 +151,7 @@ export default function CheckoutPage() {
   );
 }
 
+
 // Component that handles the payment form
 function PaymentForm() {
   const router = useRouter();
@@ -178,8 +181,8 @@ function PaymentForm() {
       setErrorMessage(null);
       alert("Payment successful!"); // Notify the user
       setIsProcessing(false);
-      
-      router.push("shipment"); // Redirect to shipment page
+
+      router.push("/shipment"); // Ensure the path starts with a forward slash
     }
   };
 
@@ -214,7 +217,6 @@ function PaymentForm() {
 // const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string);
 
 // export default function CheckoutPage() {
-//   const router = useRouter();
 //   const searchParams = useSearchParams();
 //   const cartData = searchParams.get("cart");
 
@@ -231,10 +233,11 @@ function PaymentForm() {
 
 //   // State to store the client secret, which is required for processing the payment
 //   const [clientSecret, setClientSecret] = useState<string | null>(null);
+//   const [showPaymentForm, setShowPaymentForm] = useState(false); // State to control the visibility of the payment form
 
 //   useEffect(() => {
 //     // When the component mounts, request a new PaymentIntent from the server
-//     const totalAmount:number = calculateTotal() * 100; // Convert total to cents
+//     const totalAmount: number = calculateTotal() * 100; // Convert total to cents
 //     createPaymentIntent(totalAmount)
 //       .then((res) => {
 //         setClientSecret(res.clientSecret); // Save the client secret to state
@@ -259,7 +262,8 @@ function PaymentForm() {
 //         <div className="flex items-center justify-center p-4 sm:p-8 mx-auto gap-x-10">
 //           {/* Order Summary */}
 //           <div className="w-[500px] h-auto px-32 space-y-6 border-2 border-gray-300 shadow-lg rounded-md p-10">
-//             <h2 className="text-xl font-bold text-pink-500">Order Summary</h2>
+//             <h2 className="text-xl font-bold text-pink-500">
+//               Order Summary</h2>
 //             {cart.map(
 //               (item: {
 //                 id: string;
@@ -301,7 +305,8 @@ function PaymentForm() {
 
 //           {/* Shipping Details and Stripe Checkout */}
 //           <div className="flex flex-col items-center justify-center w-[500px] border-2 border-gray-300 shadow-lg rounded-md p-10">
-//             <h2 className="text-xl font-bold text-purple-600">Shipping Details</h2>
+//             <h2 className="text-xl font-bold text-purple-600">
+//               Shipping Details</h2>
 //             <form className="space-y-4">
 //               <input
 //                 type="text"
@@ -327,14 +332,21 @@ function PaymentForm() {
 //                 className="w-full p-2 border rounded"
 //                 required
 //               />
-//               <button>
+//               <button
+//                 type="button"
+//                 onClick={() => setShowPaymentForm(true)}
+//                 className="py-2 px-4 bg-blue-500 text-white rounded"
+//               >
 //                 Place Order
 //               </button>
-//               {/* Stripe Payment Form */}
+//             </form>
+
+//             {/* Conditionally render the Stripe Payment Form */}
+//             {showPaymentForm && (
 //               <Elements stripe={stripePromise} options={{ clientSecret }}>
 //                 <PaymentForm />
 //               </Elements>
-//             </form>
+//             )}
 //           </div>
 //         </div>
 //       </div>
@@ -371,7 +383,8 @@ function PaymentForm() {
 //       setErrorMessage(null);
 //       alert("Payment successful!"); // Notify the user
 //       setIsProcessing(false);
-//       router.push("/shipment"); // Redirect to shipment page
+      
+//       router.push("shipment"); // Redirect to shipment page
 //     }
 //   };
 
@@ -392,92 +405,3 @@ function PaymentForm() {
 // }
 
 
-// "use client"; // This directive ensures the component runs only on the client side in a Next.js app.
-// // Install @stripe/stripe-js & @stripe/react-stripe-js
-// import React, { useState, useEffect } from "react";
-// import { loadStripe } from "@stripe/stripe-js";
-// import { Elements, PaymentElement, useStripe, useElements } from "@stripe/react-stripe-js";
-// import { createPaymentIntent } from "./action";
-// import { useRouter } from "next/navigation";
-
-// // Initialize Stripe with the public key from environment variables
-// const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string);
-
-// export default function CheckoutPage() {
-//   // State to store the client secret, which is required for processing the payment
-//   const [clientSecret, setClientSecret] = useState<string | null>(null);
-
-//   useEffect(() => {
-//     // When the component mounts, request a new PaymentIntent from the server
-//     createPaymentIntent()
-//       .then((res) => {
-//           setClientSecret(res.clientSecret); // Save the client secret to state
-//       })
-//   }, []);
-//   console.log(clientSecret);
-
-//   // While waiting for the client secret, show a loading message
-//   if (!clientSecret) {
-//     return <div>Loading...</div>;
-//   }
-
-//   return (
-//     <div style={{ maxWidth: 400, margin: "0 auto" }}>
-//       <h1 className="tex-2xl md:text-4xl font-bold mt-4 mb-4 text-green-700">Payment</h1>
-//       {/* Wrap the payment form inside the Elements provider with Stripe instance and client secret */}
-//       <Elements stripe={stripePromise} 
-//       options={{ clientSecret }}>
-//         <PaymentForm />
-//       </Elements>
-//     </div>
-//   );
-// }
-
-// // Component that handles the payment form
-// function PaymentForm() {
-//     const router = useRouter();
-//   const stripe = useStripe(); // Hook to access Stripe methods
-//   const elements = useElements(); // Hook to access Stripe elements
-//   const [isProcessing, setIsProcessing] = useState(false); // State to manage loading state while processing
-//   const [errorMessage, setErrorMessage] = useState<string | null>(null); // State to show error messages
-
-//   const handleSubmit = async (e: React.FormEvent) => {
-//     e.preventDefault(); // Prevent page refresh when submitting the form
-
-//     if (!stripe || !elements) return; // Ensure Stripe is loaded before proceeding
-
-//     setIsProcessing(true); // Indicate that the payment is being processed
-
-//     // Attempt to confirm the payment
-//     const { error } = await stripe.confirmPayment({
-//       elements,
-//       redirect: "if_required", // Redirect if required by the payment method
-//     });
-
-//     if (error) {
-//       setErrorMessage(error.message || "An unknown error occurred"); // Display error message if payment fails
-//       setIsProcessing(false);
-//     } else {
-//       // Payment was successful
-//       setErrorMessage(null);
-//       alert("Payment successful!"); // Notify the user
-//       setIsProcessing(false);
-//       // You can optionally redirect the user to a success page here
-//     }
-//   };
-
-//   return (
-//     <form onSubmit={handleSubmit}>
-//       {/* Stripe's payment element (handles input fields for card details, etc.) */}
-//       <PaymentElement />
-//       <button className=" py-4 px-6 bg-green-600 text-white mt-10  w-full   " type="submit" 
-//       disabled={!stripe || isProcessing}>
-//         {isProcessing ? "Processing..." : "Pay Now"} {/* Show dynamic button text */}
-//       </button>
-      
-//       {/* Display any error messages if they occur */}
-//       {errorMessage && <div style={{ color: "red", marginTop: 8 }}>{errorMessage}</div>}
-//       <button  onClick={() => router.push("/shipment")} className=" py-4 px-6 bg-green-600 text-white mt-10  w-full   ">Shipment</button>
-//     </form>
-//   );
-// }

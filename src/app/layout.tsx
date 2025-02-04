@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { CartProvider } from "./components/CartContext";
 import Script from "next/script";
-import { ClerkProvider, SignedIn, SignedOut, SignInButton, SignOutButton, UserButton } from "@clerk/nextjs";
+import { ClerkProvider} from "@clerk/nextjs";
 
 
 const geistSans = localFont({

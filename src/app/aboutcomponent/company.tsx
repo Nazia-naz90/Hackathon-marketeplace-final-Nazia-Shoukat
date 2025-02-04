@@ -3,7 +3,7 @@ import Image from 'next/image';
 const Companies = () => {
   return (
     <>
-<div className="bg-[#FAFAFA] mt-10 py-11 mx-auto">
+<div className="max-w-7xl  bg-[#FAFAFA] mt-10 py-11 mx-auto">
 <div className="flex flex-col justify-center items-center ">
 <h1 className="text-[40px] font-bold text-[#252B42] text-center">
 Big Companies Are Here    

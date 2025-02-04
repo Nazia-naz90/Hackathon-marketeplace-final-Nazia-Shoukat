@@ -54,7 +54,7 @@ const MeetTeam:React.FC = () => {
     ]
   return (
     <>
-     <section className='py-16 bg-white'>
+     <section className='max-w-7xl mx-auto py-16 bg-white'>
     <h2 className="text-center
     text-[40px] font-bold 
     text-[#252B42]

@@ -3,7 +3,10 @@ import React from "react";
 const Problem=()=>{
     return(
         <>
-        <div className="container lg:flex w-[31.75rem] h-[31.25rem] sm:w-full md:w-full items-center  justify-between text-pretty sm:text-start  px-12 sm:px-10 md:mx-20 mx-auto">
+        <div className="max-w-7xl container lg:flex w-[31.75rem] 
+        h-[31.25rem] sm:w-full md:w-full items-center  
+        justify-between text-pretty sm:text-start  px-12 sm:px-10 
+        md:mx-20 mx-auto">
      {/*PROBLEM TEXT SECTION*/}
      
 <div className="flex flex-col  w-1/2 md:w-full object-contain gap-6 py-8">

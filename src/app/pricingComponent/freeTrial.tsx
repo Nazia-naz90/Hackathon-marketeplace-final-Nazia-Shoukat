@@ -10,7 +10,8 @@ import {
 const FreeTrail = () => {
   return (
     <div>
-      <div className="py-16 bg-[#FFFFFF] text-center mt-20">
+      <div className="max-w-7xl mx-auto py-16 bg-[#FFFFFF] 
+      text-center mt-20">
         <h2 className="text-[40px] font-bold text-[#252B42]">
           Start your 15 Days Free Trial
         </h2>

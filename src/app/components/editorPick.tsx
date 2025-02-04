@@ -5,7 +5,7 @@ export default function Editors() {
   return (
 
     <>
-   <div className="flex flex-col items-center justify-center text-center mt-16 mb-7 bg-[#FAFAFA] pt-3">
+   <div className="max-w-7xl mx-auto flex flex-col items-center justify-center text-center mt-16 mb-7 bg-[#FAFAFA] pt-3">
     <div>
       <h2 className="text-[#252B42] font-bold text-[24px] mb-2">
       {"EDITOR'S PICK"}

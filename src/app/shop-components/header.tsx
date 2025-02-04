@@ -16,7 +16,7 @@ const Header =() =>{
   }
 
   return(
-    <header className="bg-white shadow-md py-4">
+    <header className="max-w-7xl mx-auto bg-white shadow-md py-4">
 <div className="container mx-auto flex items-center justify-between px-4">
     {/* LOGO */}
   <div className="text-[24px] font-bold text-[#252B42] mr-8">

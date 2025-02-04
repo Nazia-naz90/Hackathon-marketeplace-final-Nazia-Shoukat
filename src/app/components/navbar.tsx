@@ -25,7 +25,7 @@ const Header = () => {
   const { isSignedIn } = useUser(); // Clerk ka useUser hook
 
   return (
-    <div className="overflow-x-hidden">
+    <div className="max-w-7xl mx-auto overflow-x-hidden">
       {/* HEADER SECTION */}
       <div className="bg-[#252B42] py-4 hidden lg:block">
         <div className="container mx-auto flex justify-between items-center text-white text-sm">

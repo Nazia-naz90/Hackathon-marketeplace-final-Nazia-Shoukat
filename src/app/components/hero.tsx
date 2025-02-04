@@ -6,11 +6,11 @@ import React from "react";
 
 const Hero = () => {
   return (
-    <div className=" relative bg-[url('/images/hero-image.jpg')] bg-cover
+    <div className="max-w-7xl relative bg-[url('/images/hero-image.jpg')] bg-cover
      bg-center  
      sm:bg-[top_center]
      lg:bg-center
-     h-[400px] sm:h-[600px] lg:h-[716px] ">
+     h-[400px] sm:h-[600px] lg:h-[716px] mx-auto">
       {/* Overlay */}
       <div className="absolute inset-0 "></div >
 

@@ -6,7 +6,8 @@ import { FaFacebook } from "react-icons/fa6";
 const Footer = () => {
   return (
     <>
-      <footer className="relative py-6 mt-10 bg-white">
+      <footer className="max-w-7xl mx-auto relative py-6 mt-10
+       bg-white">
 
         {/* FIRST FOOTER SOCIAL LINK SECTION */}
         <div

@@ -6,7 +6,7 @@ import Link from 'next/link';
 const ContactUs = () => {
   return (
     <>
-    <div className="flex flex-col md:flex-row items-center justify-between px-4 py-8">
+    <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between px-4 py-8">
      {/* TEXT SECTION */}
      <div className="w-full text-center md:text-left md:w-1/2 md:ml-16">
      <h3 className="text-[#252B42] font-bold text-[16px] mb-6">

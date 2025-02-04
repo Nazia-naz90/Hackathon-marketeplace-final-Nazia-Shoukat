@@ -28,7 +28,8 @@ export default async function FeatureProduct() {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center 
+      <div className="max-w-7xl mx-auto flex flex-col 
+      items-center justify-center 
       text-center mt-28 mb-7 overflow-x-hidden">
         <div>
           <h3 className="text-[#737373] text-[20px]">

@@ -5,7 +5,7 @@ const Work = () => {
   return (
     <>
 
-    <div className="bg-[#2A7CC7]  sm:flex sm:items-center sm:justify-center
+    <div className="max-w-7xl mx-auto bg-[#2A7CC7]  sm:flex sm:items-center sm:justify-center
      py-10 h-[31.25rem] sm:h-[31.25rem] ">
     <div className="flex flex-col md:flex-row items-center justify-center ">
     {/* TEXT SECTION*/}

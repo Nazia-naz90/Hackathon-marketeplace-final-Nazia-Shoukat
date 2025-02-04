@@ -7,7 +7,7 @@ const FeaturedPost = () => {
 
   return (
   <>
-  <div className='mt-32'>
+  <div className=' mt-32'>
     <div className="text-center mb-20">
      <h3 id="blog" className='text-[#23A6F0] text-[14px] font-bold'>
      Practice Advice

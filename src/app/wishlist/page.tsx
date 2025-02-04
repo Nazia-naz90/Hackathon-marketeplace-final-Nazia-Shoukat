@@ -11,7 +11,7 @@ const WishlistPage = () => {
   return (
 <>
 <Header/>
-<div className="p-4 sm:p-8">
+<div className="max-w-7xl mx-auto p-4 sm:p-8">
       <h1 className="text-2xl sm:text-4xl font-bold my-6 text-center
       text-red-500 shadow-red-700 text-shadow-lg
       hover:underline text-myDarkOrange">

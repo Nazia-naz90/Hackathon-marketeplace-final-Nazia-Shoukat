@@ -15,7 +15,7 @@ import{
     const [isMenuOpen,setIsMenuOpen] = useState(false);
 
     return(
-        <div className="overflow-x-hidden">
+        <div className="max-w-7xl mx-auto overflow-x-hidden">
             {/* Header Section */}
 
      {/* NAVBAR PORTION */}
