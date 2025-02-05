@@ -1,5 +1,6 @@
 "use client";
-import { useSearchParams, useRouter } from "next/navigation";
+// import { useSearchParams, useRouter } from "next/navigation";
+import {useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements, PaymentElement, useStripe, useElements } from "@stripe/react-stripe-js";
@@ -10,16 +11,18 @@ import Image from "next/image";
 // Initialize Stripe with the public key from environment variables
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string);
 
-export default function CheckoutPage() {
-  const searchParams = useSearchParams();
-  const cartData = searchParams.get("cart");
+export default function CheckoutPage({searchParams}:{searchParams:{cart:string}}) {
+  // const searchParams = useSearchParams();
+  // const cartData = searchParams.get("cart");
 
   // Parse the cart data from the URL
-  const cart = cartData ? JSON.parse(decodeURIComponent(cartData)) : [];
+  //const cart = cartData ? JSON.parse(decodeURIComponent(cartData)) : [];
+
+  const cartData = JSON.parse(searchParams.cart);
 
   // Calculate the total price
   const calculateTotal = () =>
-    cart.reduce(
+    cartData.reduce(
       (total: number, item: { price: number; quantity: number }) =>
         total + item.price * item.quantity,
       0
@@ -58,7 +61,7 @@ export default function CheckoutPage() {
           <div className="w-[500px] h-auto px-32 space-y-6 border-2 border-gray-300 shadow-lg rounded-md p-10">
             <h2 className="text-xl font-bold text-pink-500">
               Order Summary</h2>
-            {cart.map(
+            {cartData.map(
               (item: {
                 id: string;
                 heading: string;
