@@ -78,10 +78,11 @@ export default function OrderPage() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-8 text-center">Shipping Information</h1>
-
-      <form onSubmit={handleSubmit} className="space-y-6">
+    <div className="max-w-7xl p-6 mx-auto">
+      
+       <div className="flex flex-col border-2 border-gray-300 shadow-lg w-[40rem] mx-auto px-5" >
+       <h1 className="text-3xl font-bold mb-8 text-center text-green-500">Shipping Information</h1>
+       <form onSubmit={handleSubmit} className="space-y-6 ">
         {/* Full Name */}
         <div>
           <label htmlFor="fullName" className="block text-sm font-medium text-gray-700">
@@ -221,6 +222,8 @@ export default function OrderPage() {
           </button>
         </div>
       </form>
+       </div>
+
     </div>
   );
 }
