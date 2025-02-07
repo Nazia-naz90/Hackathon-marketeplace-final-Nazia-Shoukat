@@ -1,4 +1,4 @@
-import { shipengine } from "@/lib/helper/shipEngine"; // Import ShipEngine client
+import { shipengine} from "@/lib/helper/shipEngine"; // Import ShipEngine client
 import { Address, Package } from "@/app/types/type."; // Import custom types
 import { NextRequest } from "next/server";
 
@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
 // in testing api you can use your  address which you have selected in create account
 // Define the "ship from" address (e.g., your warehouse or business address)
     const shipFromAddress: Address = {
-      name: "Michael Smith",
+      name: "Bandage",
       phone: "+1 555 987 6543",
       addressLine1: "456 Oak Avenue",
       addressLine2: "Suite 200",

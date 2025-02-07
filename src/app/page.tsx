@@ -4,6 +4,7 @@ import FeaturedPost from "./components/featuredPost";
 import Header from "./components/navbar";
 import Footer from "./components/footerFirst";
 import FeatureProduct from "./components/featureProduct";
+
 // import FeatureProduct from "./components/featureProduct";
 
 

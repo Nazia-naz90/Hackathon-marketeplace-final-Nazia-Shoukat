@@ -4,16 +4,15 @@ import axios from "axios";
 import { Address, Rate, trackingObjType } from "@/app/types/type.";
 import { cartProductsWhichCanBeShipped } from "@/app/types/data";
 import Link from "next/link";
-import Header from "@/app/components/navbar";
 
-// don't judge frontend code i have build it to uderstand shipengine api 😁
+
 
 const ShippingRatesPage = () => {
   // to ship address
   // i added defualt address which help you understand structure of address
   const [shipeToAddress, setshipeToAddress] = useState<Address>({
-    name: "John Doe",
-    phone: "+1 555-678-1234",
+    name: "",
+    phone: "",
     addressLine1: "1600 Pennsylvania Avenue NW",
     addressLine2: "", // Optional
     cityLocality: "Washington",
@@ -92,10 +91,7 @@ const ShippingRatesPage = () => {
   };
 
   return (
-    <>
-<Header/>
-<div className="min-h-screen text-black bg-gray-100 py-8 px-4 
-    sm:px-6 lg:px-8">
+    <div className="min-h-screen text-black bg-gray-100 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6">
         <h1 className="text-3xl font-bold text-gray-900 mb-6">
           Shipping Rates Calculator
@@ -216,7 +212,7 @@ const ShippingRatesPage = () => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 disabled:bg-gray-400"
+            className="w-full px-4 py-2 bg-yellow-600 text-white rounded-md hover:bg-yellow-700 disabled:bg-gray-400"
           >
             {loading ? "Calculating..." : "Get Shipping Rates"}
           </button>
@@ -272,7 +268,7 @@ const ShippingRatesPage = () => {
             <button
               onClick={handleCreateLabel}
               disabled={loading}
-              className="w-full px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:bg-gray-400"
+              className="w-full px-4 py-2 bg-yellow-600 text-white rounded-md hover:bg-yellow-700 disabled:bg-gray-400"
             >
               {loading ? "Creating Label..." : "Create Label"}
             </button>
@@ -290,7 +286,7 @@ const ShippingRatesPage = () => {
             <p> labelId: {trackingObj.labelId}</p>
             <p> carrierCode: {trackingObj.carrierCode}</p>
             <Link href={`/tracking/?labelId=${trackingObj.labelId}`}>
-              <button className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">Track Order</button>
+              <button className="px-4 py-2 bg-yellow-600 text-white rounded-md hover:bg-yellow-700">Track Order</button>
             </Link>
           </div>
         )}
@@ -308,11 +304,7 @@ const ShippingRatesPage = () => {
         )}
       </div>
     </div>
-
-    </>
-
   );
 };
 
 export default ShippingRatesPage;
-
