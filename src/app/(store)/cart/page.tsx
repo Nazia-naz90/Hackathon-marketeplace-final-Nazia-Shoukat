@@ -20,7 +20,7 @@ const CartPage = () => {
   const totalPriceWithVat = totalPrice + vat;
 
   // Convert cart data to a URL-friendly string
-  const cartData = encodeURIComponent(JSON.stringify(cart));
+  //const cartData = encodeURIComponent(JSON.stringify(cart));
 
   return (
     <>
@@ -120,7 +120,8 @@ const CartPage = () => {
                   <span>${totalPriceWithVat.toFixed(2)}</span>
                 </div>
                 <Link href="/order">
-                  <button className="w-full bg-yellow-600 py-3 px-4 rounded-[20px] text-center text-xl font-bold text-slate-800">
+                  <button className="w-full bg-yellow-600 py-3 px-4
+                   rounded-[20px] text-center text-xl font-bold text-slate-800">
                     CheckOut
                   </button>
                 </Link>

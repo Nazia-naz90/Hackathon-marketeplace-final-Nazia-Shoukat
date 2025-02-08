@@ -18,7 +18,7 @@ export  interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  console.log(product)
+  //console.log(product)
   return (
 <>
 <div className="flex flex-col items-center p-4 mt-6 rounded-lg 
