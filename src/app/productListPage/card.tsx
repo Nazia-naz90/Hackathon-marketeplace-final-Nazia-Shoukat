@@ -1,11 +1,11 @@
 import ProductCard, { Product } from "@/app/components/productCard";
 import { client } from "@/sanity/lib/client";
-import { groq } from "next-sanity";
+//import { groq } from "next-sanity";
 // import { Product } from "@/app/components/productCard";
 
 const Cards: React.FC = async () => {
 
-  const products = await client.fetch(groq`*[_type=='product' ]{
+  const products = await client.fetch(`*[_type=='product' ]{
     lDress->{ 
       "eyeIconUrl": eyeIcon.asset->url,
       "cartIconUrl": cartIcon.asset->url,
@@ -24,105 +24,7 @@ const Cards: React.FC = async () => {
 }
 `);
 
-  // const products: Product[] = [
-  //   {
-  //     image: "/images/productList/images/card-1.png",
-  //     name: "Graphic Design",
-  //     department: "English Department",
-  //     originalPrice: "$16.48",
-  //     discountPrice: "$6.48",
-  //     colors: ["bg-[#23A6F0]", "bg-[#23856D]", "bg-[#E77C40]", "bg-[#252B42]"],
-  //   },
-  //   {
-  //     image: "/images/productList/images/card-2.png",
-  //     name: "Graphic Design",
-  //     department: "English Department",
-  //     originalPrice: "$16.48",
-  //     discountPrice: "$6.48",
-  //     colors: ["bg-[#23A6F0]", "bg-[#23856D]", "bg-[#E77C40]", "bg-[#252B42]"],
-  //   },
-  //   {
-  //     image: "/images/productList/images/card-3.png",
-  //     name: "Graphic Design",
-  //     department: "English Department",
-  //     originalPrice: "$16.48",
-  //     discountPrice: "$6.48",
-  //     colors: ["bg-[#23A6F0]", "bg-[#23856D]", "bg-[#E77C40]", "bg-[#252B42]"],
-  //   },
-  //   {
-  //     image: "/images/productList/images/card-4.png",
-  //     name: "Graphic Design",
-  //     department: "English Department",
-  //     originalPrice: "$16.48",
-  //     discountPrice: "$6.48",
-  //     colors: ["bg-[#23A6F0]", "bg-[#23856D]", "bg-[#E77C40]", "bg-[#252B42]"],
-  //   },
-  //   {
-  //     image: "/images/productList/images/card-5.png",
-  //     name: "Graphic Design",
-  //     department: "English Department",
-  //     originalPrice: "$16.48",
-  //     discountPrice: "$6.48",
-  //     colors: ["bg-[#23A6F0]", "bg-[#23856D]", "bg-[#E77C40]", "bg-[#252B42]"],
-  //   },
-  //   {
-  //     image: "/images/productList/images/card-6.png",
-  //     name: "Graphic Design",
-  //     department: "English Department",
-  //     originalPrice: "$16.48",
-  //     discountPrice: "$6.48",
-  //     colors: ["bg-[#23A6F0]", "bg-[#23856D]", "bg-[#E77C40]", "bg-[#252B42]"],
-  //   },
-  //   {
-  //     image: "/images/productList/images/card-7.png",
-  //     name: "Graphic Design",
-  //     department: "English Department",
-  //     originalPrice: "$16.48",
-  //     discountPrice: "$6.48",
-  //     colors: ["bg-[#23A6F0]", "bg-[#23856D]", "bg-[#E77C40]", "bg-[#252B42]"],
-  //   },
-  //   {
-  //     image: "/images/productList/images/card-8.png",
-  //     name: "Graphic Design",
-  //     department: "English Department",
-  //     originalPrice: "$16.48",
-  //     discountPrice: "$6.48",
-  //     colors: ["bg-[#23A6F0]", "bg-[#23856D]", "bg-[#E77C40]", "bg-[#252B42]"],
-  //   },
-  //   {
-  //       image: "/images/productList/images/card-9.png",
-  //       name: "Graphic Design",
-  //       department: "English Department",
-  //       originalPrice: "$16.48",
-  //       discountPrice: "$6.48",
-  //       colors: ["bg-[#23A6F0]", "bg-[#23856D]", "bg-[#E77C40]", "bg-[#252B42]"],
-  //     },
-  //     {
-  //       image: "/images/productList/images/card-10.png",
-  //       name: "Graphic Design",
-  //       department: "English Department",
-  //       originalPrice: "$16.48",
-  //       discountPrice: "$6.48",
-  //       colors: ["bg-[#23A6F0]", "bg-[#23856D]", "bg-[#E77C40]", "bg-[#252B42]"],
-  //     },
-  //     {
-  //       image: "/images/productList/images/card-11.png",
-  //       name: "Graphic Design",
-  //       department: "English Department",
-  //       originalPrice: "$16.48",
-  //       discountPrice: "$6.48",
-  //       colors: ["bg-[#23A6F0]", "bg-[#23856D]", "bg-[#E77C40]", "bg-[#252B42]"],
-  //     },
-  //     {
-  //       image: "/images/productList/images/card-12.png",
-  //       name: "Graphic Design",
-  //       department: "English Department",
-  //       originalPrice: "$16.48",
-  //       discountPrice: "$6.48",
-  //       colors: ["bg-[#23A6F0]", "bg-[#23856D]", "bg-[#E77C40]", "bg-[#252B42]"],
-  //     },
-  // ];
-  return (
+    return (
     <>
       <div className="flex flex-col items-center justify-center text-center mt-28 mb-7 overflow-x-hidden">
         <div>
